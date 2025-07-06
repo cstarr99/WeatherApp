@@ -6,6 +6,8 @@ body {
   margin: 0;
   font-family: Roboto;
   background: url(images/sky\ real.jpg) center;
+  display: flex;
+  align-items: center;
 }
 
 .container {
@@ -19,19 +21,20 @@ body {
 
 #weather-search {
   margin-left: 22rem;
-  height: 43px;
+  height: 40px;
   width: 240px;
   border-radius: 4%;
   border: 1px solid black;
   font-weight: bold;
   font-size: 1.2em;
+  padding: 10px;
 }
 
 .search-weather-btn {
   font-weight: bold;
   font-size: 2em;
   border: 1px solid black;
-  height: 43px;
+  height: 41px;
   width: 150px;
   background-color: rgb(99, 173, 225);
   color: white;
@@ -48,9 +51,14 @@ body {
 }
 
 .card {
-  height: 20%;
-  width: 30%;
+  height: 70%;
+  width: 40%;
   background: url(images/sky\ real.jpg) center;
   margin: auto;
-  margin-top: 125px;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5%;
+  border: 1px solid black;
 }
