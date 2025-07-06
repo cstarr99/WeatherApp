@@ -51,7 +51,9 @@ function displayWeatherData(weatherData) {
     card.appendChild(cityDisplay);
     //Temperature Display
     const tempDisplay = document.createElement("p");
-    tempDisplay.innerText = weatherData.main.temp;
+    const tempData = weatherData.main.temp;
+    const tempF = `${((tempData - 273.15) * (9 / 5) + 32).toFixed(1)}°F`;
+    tempDisplay.innerText = tempF;
     card.appendChild(tempDisplay);
     //Humidity Display
     const HumDisplay = document.createElement("p");
