@@ -12,19 +12,23 @@ weatherForm.addEventListener("submit", async (e) => {
   clearData();
   clearErrors();
   const city = citySearch.value;
+  //If a city is entered then try to get the weather and display.
   if (city) {
     try {
       const weatherData = await getWeather(city);
       displayWeatherData(weatherData);
+      //If try fails then display and print error in catch.
     } catch (error) {
       console.log(error);
       displayErrors(error);
     }
+    //If no city then display error below.
   } else {
     displayErrors("Please enter a city");
   }
 });
 
+//displays errors in card when error is made.
 function displayErrors(errorMessage) {
   errors.style.display = "block";
   const li = document.createElement("li");
@@ -32,18 +36,22 @@ function displayErrors(errorMessage) {
   errorsList.appendChild(li);
 }
 
+//Uses API to get weather data for corresponding city.
 async function getWeather(city) {
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
   try {
+    //Tries to get api and turn code into json
     const weatherData = await fetch(apiUrl);
+    //If can't fetch API then display the error.
     if (!weatherData.ok) {
       displayErrors(
         "Error fetching API: Please make sure city spelling is correct."
       );
+      //If API could be fetched turn it into json and return.
     } else {
-      const responseJson = await weatherData.json();
-      return responseJson;
+      return await weatherData.json();
     }
+    //If try doesn't work, then catch runs and prints error.
   } catch (error) {
     console.log(error);
   }
@@ -51,6 +59,8 @@ async function getWeather(city) {
 
 function displayWeatherData(weatherData) {
   if (weatherData !== undefined) {
+    //adding each element by creating the element then making the innertext equal the matching data from the API.
+
     card.style.display = "flex";
     //City Display
     const cityDisplay = document.createElement("h1");
@@ -80,6 +90,7 @@ function displayWeatherData(weatherData) {
     feelsLike.innerText = feelsLikeF;
     card.appendChild(feelsLike);
 
+    //add classlist to all data elements
     cityDisplay.classList.add("city-display");
     tempDisplay.classList.add("temp-display");
     HumDisplay.classList.add("hum-display");
@@ -88,6 +99,7 @@ function displayWeatherData(weatherData) {
   }
 }
 
+//function that clears old data when new form submitted.
 function clearData() {
   while (card.children[0] != undefined || null) {
     card.removeChild(card.children[0]);
@@ -95,6 +107,7 @@ function clearData() {
   card.style.display = "none";
 }
 
+//function that clears old errors when new form submitted.
 function clearErrors() {
   while (errorsList.children[0] != undefined || null) {
     errorsList.removeChild(errorsList.children[0]);
