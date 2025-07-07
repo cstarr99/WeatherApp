@@ -3,14 +3,18 @@ const citySearch = document.querySelector("#weather-search");
 const searchBtn = document.querySelector(".search-weather-btn");
 const card = document.querySelector(".card");
 const container = document.querySelector(".container");
+const errorsList = document.querySelector(".errors-list");
 const API_KEY = "2b35c25cf23cf6699ce17b4611bf2c06";
 
 weatherForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+  clearData();
+  clearErrors();
   const city = citySearch.value;
   if (city) {
     try {
       const weatherData = await getWeather(city);
+      console.log(weatherData);
       displayWeatherData(weatherData);
     } catch (error) {
       console.log(error);
@@ -22,9 +26,9 @@ weatherForm.addEventListener("submit", async (e) => {
 });
 
 function displayErrors(errorMessage) {
-  const p = document.createElement("p");
-  p.innerText = errorMessage;
-  container.appendChild(p);
+  const li = document.createElement("li");
+  li.innerText = errorMessage;
+  errorsList.appendChild(li);
 }
 
 async function getWeather(city) {
@@ -52,7 +56,7 @@ function displayWeatherData(weatherData) {
     //Temperature Display
     const tempDisplay = document.createElement("p");
     const tempData = weatherData.main.temp;
-    const tempF = `${((tempData - 273.15) * (9 / 5) + 32).toFixed(1)}°F`;
+    const tempF = `Temp: ${((tempData - 273.15) * (9 / 5) + 32).toFixed(1)}°F`;
     tempDisplay.innerText = tempF;
     card.appendChild(tempDisplay);
     //Humidity Display
@@ -61,9 +65,15 @@ function displayWeatherData(weatherData) {
     card.appendChild(HumDisplay);
     //Description Display
     const descDisplay = document.createElement("p");
-    descDisplay.innerText = weatherData.weather[0].description;
+    descDisplay.innerText = weatherData.weather[0].main;
     card.appendChild(descDisplay);
   }
 }
 
-function clearData() {}
+function clearData() {
+  while (card.children[0] != undefined || null) {
+    card.removeChild(card.children[0]);
+  }
+}
+
+function clearErrors() {}
