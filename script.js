@@ -51,7 +51,7 @@ async function getWeather(city) {
 
 function displayWeatherData(weatherData) {
   if (weatherData !== undefined) {
-    card.style.display = "block";
+    card.style.display = "flex";
     //City Display
     const cityDisplay = document.createElement("h1");
     cityDisplay.innerText = weatherData.name;
@@ -59,12 +59,12 @@ function displayWeatherData(weatherData) {
     //Temperature Display
     const tempDisplay = document.createElement("p");
     const tempData = weatherData.main.temp;
-    const tempF = `Temp: ${((tempData - 273.15) * (9 / 5) + 32).toFixed(1)}°F`;
+    const tempF = `${((tempData - 273.15) * (9 / 5) + 32).toFixed(1)}°F`;
     tempDisplay.innerText = tempF;
     card.appendChild(tempDisplay);
     //Humidity Display
     const HumDisplay = document.createElement("p");
-    HumDisplay.innerText = weatherData.main.humidity;
+    HumDisplay.innerText = `Humidity: ${weatherData.main.humidity}%`;
     card.appendChild(HumDisplay);
     //Description Display
     const descDisplay = document.createElement("p");
@@ -79,6 +79,12 @@ function displayWeatherData(weatherData) {
     ).toFixed(1)} °F`;
     feelsLike.innerText = feelsLikeF;
     card.appendChild(feelsLike);
+
+    cityDisplay.classList.add("city-display");
+    tempDisplay.classList.add("temp-display");
+    HumDisplay.classList.add("hum-display");
+    descDisplay.classList.add("desc-display");
+    feelsLike.classList.add("feels-like");
   }
 }
 
