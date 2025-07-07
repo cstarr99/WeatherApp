@@ -3,6 +3,7 @@ const citySearch = document.querySelector("#weather-search");
 const searchBtn = document.querySelector(".search-weather-btn");
 const card = document.querySelector(".card");
 const container = document.querySelector(".container");
+const errors = document.querySelector(".error");
 const errorsList = document.querySelector(".errors-list");
 const API_KEY = "2b35c25cf23cf6699ce17b4611bf2c06";
 
@@ -25,6 +26,7 @@ weatherForm.addEventListener("submit", async (e) => {
 });
 
 function displayErrors(errorMessage) {
+  errors.style.display = "block";
   const li = document.createElement("li");
   li.innerText = errorMessage;
   errorsList.appendChild(li);
@@ -35,7 +37,9 @@ async function getWeather(city) {
   try {
     const weatherData = await fetch(apiUrl);
     if (!weatherData.ok) {
-      displayErrors("Error fetching API");
+      displayErrors(
+        "Error fetching API: Please make sure city spelling is correct."
+      );
     } else {
       const responseJson = await weatherData.json();
       return responseJson;
@@ -82,10 +86,12 @@ function clearData() {
   while (card.children[0] != undefined || null) {
     card.removeChild(card.children[0]);
   }
+  card.style.display = "none";
 }
 
 function clearErrors() {
   while (errorsList.children[0] != undefined || null) {
     errorsList.removeChild(errorsList.children[0]);
   }
+  errors.style.display = "none";
 }
