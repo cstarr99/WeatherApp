@@ -16,15 +16,17 @@
   <body>
     <div class="container">
       <form class="weather-form">
-        <input
-          id="weather-search"
-          type="text"
-          placeholder="Type a Location..."
-        />
-        <button type="submit" class="search-weather-btn">Search</button>
+        <div class="header">
+          <input
+            id="weather-search"
+            type="text"
+            placeholder="Type a Location..."
+          />
+          <button type="submit" class="search-weather-btn">Search</button>
+        </div>
         <div class="data">
-          <div class="card" style="display: block"></div>
-          <div class="error">
+          <div class="card" style="display: none"></div>
+          <div class="error" style="display: none">
             <h2 class="error-title">Errors</h2>
             <ul class="errors-list"></ul>
           </div>
