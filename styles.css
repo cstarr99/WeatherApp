@@ -6,8 +6,6 @@ body {
   margin: 0;
   font-family: Roboto;
   background: url(images/sky\ real.jpg) center;
-  display: flex;
-  align-items: center;
 }
 
 .container {
@@ -51,8 +49,8 @@ body {
 }
 
 .card {
-  height: 70%;
-  width: 40%;
+  height: 400px;
+  width: 350px;
   background: url(images/sky\ real.jpg) center;
   margin: auto;
   margin-top: 25px;
@@ -66,6 +64,7 @@ body {
 .error-title {
   margin: 0;
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .errors-list {
@@ -79,6 +78,14 @@ body {
   padding: 10px;
   color: hsl(0, 50%, 20%);
   margin-bottom: 1rem;
-  width: 100px;
-  height: 75%;
+  width: 200px;
+  height: 300px;
+  transform: translate(240, 200);
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }

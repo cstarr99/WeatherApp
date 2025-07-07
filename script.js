@@ -14,7 +14,6 @@ weatherForm.addEventListener("submit", async (e) => {
   if (city) {
     try {
       const weatherData = await getWeather(city);
-      console.log(weatherData);
       displayWeatherData(weatherData);
     } catch (error) {
       console.log(error);
@@ -67,6 +66,15 @@ function displayWeatherData(weatherData) {
     const descDisplay = document.createElement("p");
     descDisplay.innerText = weatherData.weather[0].main;
     card.appendChild(descDisplay);
+    //Feels like
+    const feelsLike = document.createElement("p");
+    const feelsLikeData = weatherData.main.feels_like;
+    const feelsLikeF = `Feels Like: ${(
+      (feelsLikeData - 273.15) * (9 / 5) +
+      32
+    ).toFixed(1)} °F`;
+    feelsLike.innerText = feelsLikeF;
+    card.appendChild(feelsLike);
   }
 }
 
@@ -76,4 +84,8 @@ function clearData() {
   }
 }
 
-function clearErrors() {}
+function clearErrors() {
+  while (errorsList.children[0] != undefined || null) {
+    errorsList.removeChild(errorsList.children[0]);
+  }
+}
