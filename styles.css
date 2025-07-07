@@ -8,16 +8,6 @@ body {
   background: url(images/sky\ real.jpg) center;
 }
 
-/* .container {
-  width: 70vw;
-  height: 80vh;
-  margin: auto;
-  margin-top: 70px;
-  border: 2px solid black;
-  background-color: rgb(242, 235, 235);
-  opacity: 0.5;
-} */
-
 #weather-search {
   height: 40px;
   width: 240px;
